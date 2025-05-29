@@ -1,0 +1,3 @@
+JPA stands for Java Persistence API. It's a specification in Java that provides a standardized way to manage relational 
+data in Java applications. Essentially, JPA helps developers map Java objects to database tables, making it easier 
+to interact with databases using object-oriented programming.
