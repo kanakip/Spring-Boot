@@ -1,0 +1,36 @@
+1. @SpringBootApplication Annotation
+This annotation is used to mark the main class of a Spring Boot application. It encapsulates @SpringBootConfiguration , @EnableAutoConfiguration , and @ComponentScan annotations with their default attributes.
+
+@SpringBootApplication
+// Class
+public class DemoApplication {
+    // Main driver method
+    public static void main(String[] args)
+    {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+}
+3. @EnableAutoConfiguration Annotation
+This annotation auto-configures the beans that are present in the classpath. It simplifies the developer’s work by assuming the required beans from the classpath and configure it to run the application. 
+
+@SpringBootConfiguration
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+    @Bean
+    public StudentService studentService() {
+        return new StudentServiceImpl();
+    }
+}
+
+2. @SpringBootConfiguration Annotation
+It is a class-level annotation that is part of the Spring Boot framework. It implies that a class provides Spring Boot application configuration. 
+
+@Configuration
+@EnableAutoConfiguration
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
