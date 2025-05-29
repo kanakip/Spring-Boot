@@ -1,0 +1,37 @@
+@ComponentScan and @SpringBootApplication are two essential annotations in Spring Boot.
+
+@ComponentScan:
+
+@ComponentScan is a Spring Framework annotation that:
+
+1. Enables component scanning
+2. Searches for annotated classes (e.g., @Component, @Service, @Repository)
+3. Registers beans in the application context
+
+Example:
+
+@Configuration
+@ComponentScan(basePackages = "com.example")
+public class AppConfig {
+}
+
+@SpringBootApplication:
+
+@SpringBootApplication is a Spring Boot annotation that:
+
+1. Enables auto-configuration
+2. Enables component scanning (like @ComponentScan)
+3. Enables configuration scanning (e.g., application.properties)
+4. Registers beans in the application context
+
+Example:
+
+@SpringBootApplication
+public class MyApplication {
+}
+
+Key differences:
+
+1. Auto-configuration: @SpringBootApplication enables auto-configuration
+2. Configuration scanning: @SpringBootApplication scans for configuration files (e.g., application.properties)
+3. Scope: @SpringBootApplication is typically used at the application level, while @ComponentScan can be used at the configuration class level.
