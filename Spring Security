@@ -1,0 +1,137 @@
+https://www.geeksforgeeks.org/spring-security-interview-questions/  - read this only u will understand everything
+
+
+
+Common Spring Security Interview Questions and Answers
+Basic Level Questions
+1. What is Spring Security?
+• A powerful authentication and authorization framework
+• Provides security features for Spring-based applications
+• Protects against common vulnerabilities like CSRF, session fixation
+2. What are the main features of Spring Security?
+• Authentication and Authorization
+• Password encoding
+• Session management
+• CSRF protection
+• Security headers
+• OAuth 2.0/OpenID Connect support
+3. Difference between Authentication and Authorization?
+Authentication	Authorization
+Verifies who the user is	Determines what the user can do
+Happens first	Happens after authentication
+Involves credentials	Involves permissions/roles
+Intermediate Level Questions
+4. Explain SecurityFilterChain in Spring Security
+
+javaCopy to clipboard
+@Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+        .authorizeHttpRequests()
+        .requestMatchers("/public/**").permitAll()
+        .requestMatchers("/admin/**").hasRole("ADMIN")
+        .anyRequest().authenticated();
+    return http.build();
+}
+5. What is UserDetailsService?
+• Core interface for loading user-specific data
+• Must implement loadUserByUsername() method
+• Returns UserDetails object
+6. How to implement password encoding?
+
+javaCopy to clipboard
+@Bean
+public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+}
+Advanced Level Questions
+7. Explain method security annotations
+• @PreAuthorize: Pre-invocation authorization
+• @PostAuthorize: Post-invocation authorization
+• @Secured: Role-based security
+• @RolesAllowed: JSR-250 security
+8. How to handle CORS in Spring Security?
+
+@Bean
+public CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+    configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
+}
+9. Explain JWT implementation in Spring Security
+• JSON Web Tokens for stateless authentication
+• Components: Header, Payload, Signature
+• Implementation using filters
+Expert Level Questions
+10. How to implement OAuth2 with Spring Security?
+
+javaCopy to clipboard
+@Configuration
+public class OAuth2Config extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .oauth2Login()
+            .authorizationEndpoint()
+            .baseUri("/oauth2/authorize-client");
+    }
+}
+11. Explain Custom Authentication Provider
+
+javaCopy to clipboard
+@Component
+public class CustomAuthenticationProvider implements AuthenticationProvider {
+    @Override
+    public Authentication authenticate(Authentication authentication) {
+        // Custom authentication logic
+    }
+    @Override
+    public boolean supports(Class<?> authentication) {
+        return true;
+    }
+}
+12. Security best practices questions
+• How to prevent SQL injection?
+• How to handle session fixation?
+• How to implement remember-me functionality?
+• How to secure REST APIs?
+Scenario-Based Questions
+13. How would you secure microservices?
+• JWT tokens
+• OAuth2 implementation
+• API Gateway security
+• Service-to-service authentication
+14. How to implement role-based access control?
+
+javaCopy to clipboard
+@PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
+public void deleteUser(Long userId) {
+    // Method implementation
+}
+15. How to handle security in testing?
+
+javaCopy to clipboard
+@Test
+@WithMockUser(roles = "ADMIN")
+public void whenAdminAccessEndpoint_thenSucceeds() {
+    // Test implementation
+}
+Tips for Interview Success
+16. Understand core concepts thoroughly
+17. Be prepared with practical examples
+18. Know about latest Spring Security features
+19. Practice implementing common scenarios
+20. Understand security vulnerabilities and preventions
+Remember to explain with examples and highlight practical experience when answering these questions in interviews!
+Copy
+Create Notion
+Create Linear
+What are the main features of Spring Security?
+Authentication and Authorization Password encoding Session management CSRF protection Security headers OAuth 2.0/OpenID Connect support can you explain me these in depath
+
+From <https://highlight-chat-frontend.vercel.app/> 
+
+
