@@ -1,0 +1,95 @@
+Bean lifecycle management in Spring refers to the process of creating, initializing, using, and destroying beans. Here's a brief overview of the bean lifecycle:
+ 
+1. Instantiation: Spring creates an instance of the bean.
+2. Populate Properties: Dependencies are injected into the bean.
+3. BeanNameAware: If the bean implements BeanNameAware, Spring passes the bean's ID.
+4. BeanFactoryAware: If the bean implements BeanFactoryAware, Spring passes the BeanFactory.
+5. Pre-Initialization: @PostConstruct annotated methods are called.
+6. InitializingBean: If the bean implements InitializingBean, afterPropertiesSet() is called.
+7. Custom Init Method: A custom init method (if specified) is called.
+8. Bean is Ready: The bean is now ready for use.
+9. Pre-Destruction: @PreDestroy annotated methods are called.
+10. DisposableBean: If the bean implements DisposableBean, destroy() is called.
+11. Custom Destroy Method: A custom destroy method (if specified) is called.
+
+ 
+BeanNameAware
+ 
+12. Logging and monitoring
+13. Validation based on bean name
+14. Custom initialization logic
+15. Auditing
+ 
+BeanFactoryAware
+ 
+16. Dynamic bean lookup
+17. Prototype bean creation
+18. Conditional bean instantiation
+19. Factory pattern implementations
+
+public class CompleteAwareBean implements 
+    BeanNameAware,      // Most basic
+    BeanFactoryAware,   // Container access
+    ApplicationContextAware  // Full context
+
+
+Example:
+ 
+@Component
+public class MyBean implements InitializingBean, DisposableBean {
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println("Post Construct");
+    }
+    @Override
+    public void afterPropertiesSet() {
+        System.out.println("After Properties Set");
+    }
+    @PreDestroy
+    public void preDestroy() {
+        System.out.println("Pre Destroy");
+    }
+    @Override
+    public void destroy() {
+        System.out.println("Bean Destroyed");
+    }
+}
+ 
+This lifecycle management ensures proper initialization and cleanup of resources, and allows developers to hook into various stages of a bean's life for custom logic.
+
+Spring Bean Lifecycle stages - 
+The Spring Bean lifecycle consists of several stages from creation to destruction. Here's an overview of the key phases:
+ 
+1. Instantiation: Spring creates an instance of the bean.
+2. Population: Dependencies are injected into the bean.
+3. Initialization:
+	• BeanNameAware's setBeanName() method is called if the bean implements BeanNameAware.
+	• BeanFactoryAware's setBeanFactory() method is called if the bean implements BeanFactoryAware.
+	• @PostConstruct annotated methods are invoked.
+	• InitializingBean's afterPropertiesSet() method is called if the bean implements InitializingBean.
+	• Custom init-method defined in bean configuration is called.
+4. Bean is Ready: The bean is now ready for use.
+5. Destruction:
+• @PreDestroy annotated methods are invoked.
+• DisposableBean's destroy() method is called if the bean implements DisposableBean.
+• Custom destroy-method defined in bean configuration is called.
+
+Java Bean - 
+The Java Bean lifecycle refers to the various stages a Java Bean goes through from creation to destruction. Here's an overview of the key phases in a Java Bean's lifecycle:
+ 
+1. Instantiation:
+	• The Java Bean is created using its constructor.
+2. Property Population:
+	• The bean's properties are set using setter methods.
+3. Initialization:
+	• Any initialization methods are called. This could include methods annotated with @PostConstruct or custom initialization methods.
+4. Use:
+	• The bean is now ready and can be used by the application.
+5. Destruction:
+	• When the bean is no longer needed, destruction methods are called. This could include methods annotated with @PreDestroy or custom destruction methods.
+ 
+It's important to note that while this lifecycle is similar to the Spring Bean lifecycle, Java Beans are simpler and don't have as many lifecycle hooks as Spring Beans. The Java Bean specification primarily focuses on the property access patterns (getters and setters) and doesn't define a complex lifecycle management system.
+ 
+In a Java EE environment, additional lifecycle management can be provided by the container, which may include resource injection and management of the bean's lifecycle in relation to the application's lifecycle.
+ 
+For more complex lifecycle management, frameworks like Spring are often used, which provide a more extensive set of lifecycle hooks and management capabilities.
