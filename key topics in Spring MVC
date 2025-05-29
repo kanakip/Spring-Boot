@@ -1,0 +1,52 @@
+Here are the key topics in Spring MVC:
+ 
+1. MVC Architecture
+	• Model: Represents data and business logic
+	• View: Handles data presentation
+	• Controller: Manages user requests and workflow
+2. DispatcherServlet
+	• Front controller pattern
+	• Central point for request handling
+3. Controllers
+	• @Controller annotation
+	• Request mapping (@RequestMapping, @GetMapping, @PostMapping, etc.)
+	• Handler methods
+4. Request Mapping
+	• URL pattern matching
+	• HTTP method-specific mappings
+5. Model and ModelAndView
+	• Data passing between controller and view
+6. View Resolution
+	• ViewResolver interface
+	• Different view technologies (JSP, Thymeleaf, FreeMarker)
+7. Data Binding
+	• Form handling
+	• @ModelAttribute annotation
+8. Validation
+	• Bean Validation (JSR-303)
+	• Custom validators
+9. Exception Handling
+	• @ExceptionHandler
+	• Global exception handling
+10. Interceptors
+	• Pre-processing and post-processing of requests
+11. REST Support
+	• @RestController
+	• @ResponseBody and @RequestBody
+12. File Upload and Download
+	• MultipartResolver
+	• File handling utilities
+13. Internationalization (i18n)
+	• LocaleResolver
+	• ResourceBundleMessageSource
+14. Spring Security Integration
+	• Authentication and authorization
+15. Testing
+	• Unit testing controllers
+	• Integration testing with MockMvc
+16. Configuration
+	• Java-based (@Configuration)
+	• XML-based
+	• Spring Boot auto-configuration
+ 
+Understanding these key topics provides a solid foundation for working with Spring MVC and developing robust web applications.
