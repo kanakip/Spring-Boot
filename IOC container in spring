@@ -1,0 +1,39 @@
+The IoC (Inversion of Control) container is a core component of the Spring Framework. It's responsible for managing the lifecycle of Java objects, known as beans, and their dependencies. Here's a brief overview of the IoC container in Spring:
+ 
+1. Purpose:
+	• Manages object creation
+	• Configures objects
+	• Manages object lifecycle
+	• Wires dependencies between objects
+2. Key features:
+	• Dependency Injection (DI)
+	• Bean lifecycle management
+	• Bean scoping
+	• AOP (Aspect-Oriented Programming) support
+3. Types of IoC containers in Spring:
+	• BeanFactory: Basic container, lazy-loads beans
+	• ApplicationContext: Advanced container, extends BeanFactory with more enterprise features
+4. Configuration methods:
+	• XML-based configuration
+	• Annotation-based configuration
+	• Java-based configuration
+5. Benefits:
+	• Loose coupling between components
+	• Easier unit testing
+	• Modular design
+	• Centralized configuration management
+ 
+Example of using IoC container:
+ 
+// Define a bean
+@Component
+public class MyService {
+    // Service implementation
+}
+// Use the bean
+@Autowired
+private MyService myService;
+ 
+In this example, the IoC container manages the creation and injection of the MyService bean, demonstrating inversion of control where the framework manages object lifecycles instead of the developer.
+ 
+The IoC container is fundamental to Spring's architecture, enabling developers to focus on business logic while the framework handles object management and wiring
