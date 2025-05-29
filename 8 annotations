@@ -1,0 +1,87 @@
+3. @Value
+@Value is a powerful annotation used to inject values from various sources into your beans. These sources include properties files, environment variables, and command line arguments.
+For example, let’s say you have a properties file named “application.properties” with the following content:
+myapp.username=John
+myapp.password=secret
+You can use @Value to inject these values into your beans:
+@Service
+public class MyService {
+ @Value("${myapp.username}")
+ private String username;
+ @Value("${myapp.password}")
+ private String password;
+
+}
+
+5. @Component
+By becoming a @Component, your class becomes a Spring-managed bean, meaning Spring Boot takes care of creating and managing instances of that class within the application context. You can then inject and use this bean in other parts of your application by using @Autowired or other dependency injection mechanisms.
+
+@Component
+public class ComponentDemo {
+ public void doSomething() {
+ // code
+ }
+}
+
+@Component annotation is the base annotation for other specialized annotations in Spring, such as @Service, @Repository, and @Controller. These specialized annotations provide additional semantics and functionality tailored to specific use cases.
+
+
+@Service
+public class MyService {
+ @Autowired
+ private ComponentDemo component;
+ public void performAction() {
+ component.doSomething();
+ }
+}
+
+
+ @RequestParam
+When a client sends an HTTP request, they can include extra information in the URL called query parameters. These parameters appear after a question mark (?) in the URL and are typically in the form of key-value pairs.
+Ex: in the URL “/users?id=123”, the query parameter is “id” with a value of “123”.
+By using @RequestParam, you can retrieve the value of a specific query parameter and use it in your code.
+
+@GetMapping("/user")
+public ResponseEntity<User> getUserById(@RequestParam("id") Long userId) {
+ User user = userService.getUserById(userId);
+ return ResponseEntity.ok(user);
+}
+ 
+
+12. @Bean
+@Bean annotation in Spring is used to declare a bean. It is similar to the <bean/> element in XML configuration. By annotating a method with @Bean, you can define a bean and register it in the Spring application context.
+It indicates that a method produces a bean to be managed by the Spring container. It is typically used within a class annotated with @Configuration or @Component
+
+@Configuration
+public class AppConfig {
+ @Bean
+ public MyBean myBean() {
+ return new MyBean();
+ }
+}
+
+13. @Configuration
+The @Configuration annotation in Spring is used to indicate that a class provides configuration for the application context. It is typically used in conjunction with other annotations like @Bean to define beans and configure various aspects of the Spring application.
+
+
+14. @ControllerAdvice
+When you annotate a class with @ControllerAdvice, it becomes a global exception handler. It can contain exception handling methods that will be invoked when exceptions are thrown from controller methods. It allows you to centralize exception handling logic and apply it uniformly across different controllers.
+
+@ControllerAdvice
+public class GlobalExceptionHandler {
+ @ExceptionHandler(Exception.class)
+ public ResponseEntity<String> handleException(Exception ex) {
+ // Exception handling logic
+ return new ResponseEntity<>("An error occurred: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+ }
+}
+
+
+15. @ExceptionHandler
+When an exception occurs within a controller method, the @ExceptionHandler-annotated method is invoked to handle that specific exception.
+
+
+
+
+
+
