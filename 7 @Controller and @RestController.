@@ -1,0 +1,69 @@
+@Controller and @RestController are two essential annotations in Spring Framework.
+
+
+@Controller:
+
+@Controller is a Spring MVC annotation that:
+
+
+1. Marks a class as a web request handler.
+2. Handles HTTP requests and returns a view (e.g., JSP, HTML).
+3. Typically used for traditional web applications.
+
+
+Example:
+
+@Controller
+public class MyController {
+ 
+    @RequestMapping("/users")
+    public String getUsers(Model model) {
+        // Return a view
+        return "users";
+    }
+}
+
+
+@RestController:
+
+@RestController is a Spring Framework annotation that:
+
+
+1. Marks a class as a RESTful web service controller.
+2. Handles HTTP requests and returns data (e.g., JSON, XML).
+3. Combines @Controller and @ResponseBody annotations.
+
+
+Example:
+
+@RestController
+public class MyRestController {
+ 
+    @GetMapping("/users")
+    public List<User> getUsers() {
+        // Return data
+        return userService.getUsers();
+    }
+}
+
+
+Key differences:
+
+1. Response type: @Controller returns a view, while @RestController returns data.
+2. HTTP response: @Controller typically returns HTML, while @RestController returns JSON/XML.
+3. Annotation: @RestController combines @Controller and @ResponseBody.
+
+
+When to use each:
+
+1. Use @Controller for:
+    - Traditional web applications.
+    - Returning views (e.g., JSP, HTML).
+2. Use @RestController for:
+    - RESTful web services.
+    - Returning data (e.g., JSON, XML).
+
+
+Best practice:
+
+Use @RestController for RESTful APIs and @Controller for traditional web applications.
