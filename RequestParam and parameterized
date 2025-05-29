@@ -1,0 +1,5 @@
+	RequestParam and parameterized refer to different things, including:
+• RequestParam
+An annotation in Spring MVC that maps request parameters to method parameters in a controller method. Request parameters are query parameters that are typically appended to a URL after a question mark and separated by ampersands.
+• Parameterized
+A mathematical process that expresses the state of a system, process, or model as a function of independent quantities called parameters. It can also refer to a parameterized query, which is a query that uses placeholders for parameters and supplies the parameter values at execution time. Parameterized queries are used to avoid SQL injection attacks. 
