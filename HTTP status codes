@@ -1,0 +1,60 @@
+HTTP status codes are divided into five classes, and within these, there are numerous specific codes. Here's an overview:
+
+1. 1xx (Informational) - Indicates a provisional response:
+	• Examples: 100 (Continue), 101 (Switching Protocols), 102 (Processing).
+2. 2xx (Success) - The request was successfully received, understood, and accepted:
+	• Examples: 200 (OK), 201 (Created), 202 (Accepted), 204 (No Content).
+3. 3xx (Redirection) - Further action is required to complete the request:
+	• Examples: 301 (Moved Permanently), 302 (Found), 304 (Not Modified).
+4. 4xx (Client Error) - Indicates that the client made an error:
+	• Examples: 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found).
+5. 5xx (Server Error) - The server failed to fulfill a valid request:
+	• Examples: 500 (Internal Server Error), 502 (Bad Gateway), 503 (Service Unavailable), 504 (Gateway Timeout).
+
+Each category contains several codes, and new ones can be defined as needed. Would you like to explore a particular category in more detail? Let me know!
+
+
+-----------------------
+
+1xx Informational
+These codes indicate that the request was received and the process is continuing:
+	• 100 Continue: The server has received the request headers, and the client can proceed to send the body.
+	• 101 Switching Protocols: The server agrees to switch protocols as requested by the client.
+	• 102 Processing: Used in WebDAV, it means the server is processing the request, but no response is available yet.
+2xx Success
+These codes confirm that the request was successfully received, understood, and processed:
+	• 200 OK: The request succeeded; the result depends on the HTTP method (e.g., GET retrieves data, POST updates data).
+	• 201 Created: The request was successful, and a new resource was created.
+	• 202 Accepted: The request was received but not yet acted upon.
+	• 204 No Content: The server successfully processed the request but returned no content.
+3xx Redirection
+These codes indicate that the client needs to take additional action to complete the request:
+	• 301 Moved Permanently: The resource has been permanently moved to a new URL.
+	• 302 Found: The resource is temporarily located at a different URL.
+	• 304 Not Modified: The resource hasn’t changed since the last request; the client can use its cached version.
+	• 307 Temporary Redirect: The resource is temporarily located at another URL, and the request method should not change.
+4xx Client Errors
+These codes mean there was a problem with the request sent by the client:
+	• 400 Bad Request: The server cannot process the request due to a client-side error (e.g., malformed syntax).
+	• 401 Unauthorized: Authentication is required, and the provided credentials are invalid or missing.
+	• 403 Forbidden: The client is not allowed to access the requested resource.
+	• 404 Not Found: The requested resource doesn’t exist on the server.
+	• 405 Method Not Allowed: The HTTP method is not supported for the requested resource.
+5xx Server Errors
+These codes indicate that the server failed to fulfill a valid request:
+	• 500 Internal Server Error: The server encountered an unexpected condition that prevented it from completing the request.
+	• 502 Bad Gateway: The server received an invalid response from an upstream server.
+	• 503 Service Unavailable: The server is temporarily unable to handle the request due to being overloaded or maintenance.
+	• 504 Gateway Timeout: The server didn’t receive a timely response from an upstream server.
+
+
+------------------
+
+A protocol is essentially a set of rules or guidelines that define how devices, systems, or entities communicate and interact with one another. It's like a common language that ensures smooth and consistent communication. Protocols are widely used in various fields, especially in technology and networking.
+
+ In Different Contexts:
+1. Networking: 
+   - Protocols define how data is sent, received, and processed across networks.
+   - Examples: HTTP (Hypertext Transfer Protocol) for websites, FTP (File Transfer Protocol) for file transfer, and TCP/IP (Transmission Control Protocol/Internet Protocol) for internet communication.
+
+
