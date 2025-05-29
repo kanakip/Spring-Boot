@@ -1,0 +1,103 @@
+Here's a clear explanation of fault tolerance:
+ 
+Fault Tolerance Explained
+ 
+Fault tolerance is a system's ability to continue functioning properly even when one or more of its components fail. Think of it like a car with a spare tire - if one tire fails, you can still reach your destination.
+ 
+Key Concepts
+ 
+1. Types of Faults
+ 
+• Hardware Failures: Server crashes, network issues
+• Software Failures: Bugs, memory leaks
+• Network Failures: Connection timeouts, packet loss
+• Human Errors: Configuration mistakes, operational errors
+ 
+2. Core Strategies
+ 
+Redundancy
+ 
+• Active-Passive: Backup systems ready to take over
+• Active-Active: Multiple systems running simultaneously
+• Example: Multiple database replicas
+ 
+Circuit Breakers
+ 
+
+plaintextCopy to clipboard
+Normal → Half-Open → Open
+   ↑         ↓         |
+   └─────────←─────────┘
+
+ 
+• Prevents cascade failures
+• Allows system to "fail fast"
+• Enables self-healing
+ 
+Load Balancing
+ 
+• Distributes traffic across multiple servers
+• Redirects traffic from failed nodes
+• Ensures high availability
+ 
+3. Implementation Techniques
+ 
+1. Replication
+• Data duplication
+• Service redundancy
+• Geographical distribution
+2. Isolation
+• Containment of failures
+• Service separation
+• Bulkhead pattern
+3. Monitoring
+• Health checks
+• Performance metrics
+• Automated alerts
+ 
+4. Best Practices
+ 
+1. Design for Failure
+• Assume components will fail
+• Plan recovery strategies
+• Test failure scenarios
+2. Graceful Degradation
+• Maintain core functionality
+• Disable non-critical features
+• Provide feedback to users
+3. Recovery Mechanisms
+• Automatic failover
+• Self-healing systems
+• Backup restoration
+ 
+Example Implementations
+ 
+Database Fault Tolerance
+ 
+
+plaintextCopy to clipboard
+Primary DB ←→ Replica 1
+    ↕          ↕
+Replica 2 ←→ Replica 3
+
+ 
+Service Fault Tolerance
+ 
+
+plaintextCopy to clipboard
+Load Balancer
+    ↙     ↘
+Service A  Service A
+(Instance 1) (Instance 2)
+
+ 
+Measuring Fault Tolerance
+ 
+• Recovery Time Objective (RTO): Time to restore service
+• Recovery Point Objective (RPO): Acceptable data loss
+• Availability: Uptime percentage (e.g., 99.99%)
+ 
+Remember: Good fault tolerance doesn't just handle failures - it anticipates them and ensures continuous service despite them.
+
+From <https://highlight-chat-frontend.vercel.app/> 
+
