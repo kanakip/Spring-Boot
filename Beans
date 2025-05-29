@@ -1,0 +1,72 @@
+In Spring Boot, beans are objects that are managed by the Spring IoC (Inversion of Control) container. Here's what beans are used for:
+
+Beans are:
+1. Instantiated objects
+2. Managed by Spring IoC container
+3. Created from classes annotated with @Component, @Service, @Repository, etc.
+4. Stored in the Application Context
+
+Use of Beans:
+Beans are used for:
+1. Dependency Injection (DI)
+2. Loose Coupling
+3. Reusability
+4. Testability
+5. Configuration Management
+
+Types of Beans:
+
+1. Component Beans (@Component)
+2. Service Beans (@Service)
+3. Repository Beans (@Repository)
+4. Controller Beans (@Controller)
+5. Configuration Beans (@Configuration)
+
+Bean Lifecycle:
+
+1. Creation
+2. Initialization (using @PostConstruct)
+3. Usage
+4. Destruction (using @PreDestroy)
+
+Bean Scopes:
+
+1. Singleton (default)
+2. Prototype
+3. Request
+4. Session
+5. Application
+
+
+Benefits of Using Beans:
+
+1. Easier maintenance
+2. Improved scalability
+3. Reduced coupling
+4. Simplified testing
+5. Enhanced flexibility
+
+
+Example:
+
+// Define a bean
+@Component
+public class UserService {
+    public void saveUser(User user) {
+        // Save user logic
+    }
+}
+
+// Inject the bean
+@RestController
+public class UserController {
+    @Autowired
+    private UserService userService;
+    
+    @PostMapping
+    public void createUser(@RequestBody User user) {
+        userService.saveUser(user);
+    }
+}
+
+In this example, UserService is a bean that's instantiated and managed by Spring. It's injected into UserController using @Autowired, demonstrating dependency injection.
