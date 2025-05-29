@@ -1,0 +1,66 @@
+Read this blog In high level - https://docs.oracle.com/javaee%2F6%2Fapi%2F%2F%2F/javax/servlet/ServletContext.html#:~:text=Interface%20ServletContext&text=Defines%20a%20set%20of%20methods,application%22%20per%20Java%20Virtual%20Machine.
+
+public interface ServletContext
+
+	- the gap between the Servlet API and the Spring Framework
+	- Defines a set of methods that a servlet uses to communicate with its servlet container, for example, to get the MIME type of a file, dispatch requests, or write to a log file.
+
+
+There is one context per "web application" per Java Virtual Machine. (A "web application" is a collection of servlets and content installed under a specific subset of the server's URL namespace such as /catalog and possibly installed via a .war file.)
+In the case of a web application marked "distributed" in its deployment descriptor, there will be one context instance for each virtual machine. In this situation, the context cannot be used as a location to share global information (because the information won't be truly global). Use an external resource like a database instead.
+
+The ServletContext object is contained within the ServletConfig object, which the Web server provides the servlet when the servlet is initialized.
+Author:
+	Various
+See Also:
+	Servlet#getServletConfig, ServletConfig#getServletContext
+
+
+Field Summary	
+static java.lang.String	ORDERED_LIBS
+	          The name of the ServletContext attribute whose value (of type java.util.List<java.lang.String>) contains the list of names of JAR files in WEB-INF/lib ordered by their web fragment names (with possible exclusions if <absolute-ordering> without any <others/> is being used), or null if no absolute or relative ordering has been specified
+static java.lang.String	TEMPDIR
+	          The name of the ServletContext attribute which stores the private temporary directory (of type java.io.File) provided by the servlet container for the ServletContext
+----------------------------------------------------------------------------
+
+Servlet context in spring
+. Here's an overview of ServletContext in Spring:
+1. Definition:
+	• ServletContext is part of the Servlet API, representing the web application context.
+	• In Spring, it's integrated into the framework's web application support.
+2. Role in Spring:
+	• Acts as a bridge between the Servlet container and Spring's ApplicationContext.
+	• Provides access to application-wide initialization parameters and resources.
+3. Lifecycle:
+	• Created by the Servlet container when the web application starts.
+	• Destroyed when the web application shuts down.
+4. Key Features:
+	• Shared across all servlets in the web application.
+	• Provides methods to get application-level information and resources.
+	• Can be used to set and get attributes that are available application-wide.
+5. Spring Integration:
+	• Spring's WebApplicationContext is tied to the ServletContext.
+	• ContextLoaderListener in Spring uses ServletContext to bootstrap the root WebApplicationContext.
+6. Usage in Spring:
+	• Accessing resources: servletContext.getResourceAsStream("/WEB-INF/config.properties")
+	• Setting attributes: servletContext.setAttribute("appName", "MySpringApp")
+	• Getting context parameters: servletContext.getInitParameter("configLocation")
+7. Scope:
+	• Corresponds to the "application" scope in Spring bean scopes.
+
+Example of accessing ServletContext in a Spring controller:
+
+javaCopy to clipboard
+@Controller
+public class MyController {
+    @Autowired
+    private ServletContext servletContext;
+    @GetMapping("/app-info")
+    public String getAppInfo(Model model) {
+        String appName = servletContext.getInitParameter("appName");
+        model.addAttribute("appName", appName);
+        return "appInfo";
+    }
+}
+Understanding ServletContext is crucial for developing web applications with Spring, especially when dealing with application-wide resources and configuration.
+
