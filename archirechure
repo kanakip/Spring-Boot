@@ -1,0 +1,69 @@
+Focus: How you design a system from scratch, covering aspects like: Microservices architecture Database schema Scalability, load balancing, and caching mechanisms Evaluation: Your approach to designing a maintainable and efficient system. 
+
+Designing a system from scratch, especially for a microservices architecture, involves several key considerations that ensure scalability, maintainability, and efficiency. Here’s an explanation of how each aspect plays a role in the system design process:
+1. Microservices Architecture
+	• Definition: Microservices architecture is an approach where a system is divided into small, loosely coupled, independently deployable services. Each microservice is responsible for a specific functionality of the system, such as user management, order processing, or payment.
+	• Why it’s important: It enables easier scaling, faster development cycles, and better fault isolation. If one service fails, others can continue to function.
+Steps to Design a Microservice-Based System:
+	• Identify Services: Break the system into distinct services based on business capabilities (e.g., authentication service, payment service, product catalog service).
+	• Define Communication: Choose a protocol for communication between services (e.g., RESTful APIs, gRPC, messaging systems like Kafka or RabbitMQ).
+	• Service Independence: Ensure each service has its own database (or shared via a bounded context). This avoids tight coupling between services.
+	• Versioning: Manage versions of microservices to ensure backward compatibility.
+Challenges:
+	• Inter-Service Communication: Handling network latency and service-to-service communication.
+	• Data Consistency: Microservices with separate databases may lead to eventual consistency challenges.
+	• Deployment: Managing multiple deployments and rolling updates can get complex.
+2. Database Schema Design
+	• Normalization: Ensure the database schema is normalized (3NF or above) to avoid data redundancy and anomalies.
+	• Entity Relationships: Design entities based on business requirements. Use Entity-Relationship diagrams (ERDs) to define relationships (e.g., One-to-One, One-to-Many, Many-to-Many).
+	• Partitioning and Sharding: If the database becomes large, you might want to partition data (horizontal or vertical partitioning). Sharding can also be employed for large-scale distributed databases.
+	• Indexing: Index frequently queried fields to enhance query performance, but balance it against write performance.
+Challenges:
+	• Choosing the right database: Deciding between SQL (e.g., MySQL, PostgreSQL) and NoSQL (e.g., MongoDB, Cassandra) depending on the use case (structured vs. unstructured data).
+	• Handling relationships: SQL databases handle relationships well with joins, whereas NoSQL requires more thought around data duplication and referencing due to its denormalized nature.
+3. Scalability
+	• Horizontal Scaling: Add more instances of services across multiple servers. In a microservices architecture, this is easier since each microservice can scale independently.
+	• Vertical Scaling: Increase the power (CPU, memory) of existing machines. However, this is limited by the capacity of a single machine, so horizontal scaling is usually preferred.
+	• Auto-Scaling: Use cloud platforms (AWS, Azure, GCP) to automatically scale services based on metrics like CPU usage, memory, or incoming traffic.
+Challenges:
+	• Load Balancing: Properly distributing traffic between service instances to avoid bottlenecks or overloading certain instances.
+	• Database Scalability: Sharding databases and using distributed systems like Cassandra or HBase to handle large amounts of data.
+4. Load Balancing
+	• Definition: Load balancing is the process of distributing incoming network traffic across multiple servers or services to ensure no single service instance becomes a bottleneck.
+	• Types of Load Balancers:
+		○ Layer 4 (Transport Layer): Distributes traffic based on network information like IP addresses and TCP/UDP ports (e.g., AWS ELB).
+		○ Layer 7 (Application Layer): Distributes traffic based on application data such as HTTP headers and URLs (e.g., NGINX, HAProxy).
+Strategies:
+	• Round-Robin: Requests are distributed equally among available instances.
+	• Least Connections: New requests are sent to the instance with the fewest active connections.
+	• IP Hashing: Distributes traffic based on a hash of the client’s IP address, ensuring stickiness of requests.
+Challenges:
+	• Session Management: If sessions are required (e.g., for logged-in users), ensure session stickiness (same user routed to the same instance) or use centralized session storage (like Redis).
+5. Caching Mechanisms
+	• Definition: Caching is used to store frequently accessed data in memory to reduce database load and improve system response times.
+	• Types of Caching:
+		○ In-memory Caching: Storing cache in memory (e.g., Redis, Memcached) for fast retrieval.
+		○ CDNs (Content Delivery Networks): Used for static assets like images, CSS, and JavaScript files. They cache content at locations closer to the user.
+Caching Strategies:
+	• Cache-aside: The application checks the cache before querying the database. If the cache doesn’t have the data, the application fetches it from the database and then caches it.
+	• Write-through: Data is written to the cache and the database simultaneously.
+	• Time-to-Live (TTL): Configure the cache to expire after a certain period, ensuring data freshness.
+Challenges:
+	• Cache Invalidation: Ensuring the cache is updated when the underlying data changes.
+	• Distributed Cache: If the application is scaled across multiple instances, ensure the cache is shared across those instances to maintain consistency.
+6. Evaluation of Design
+	• Scalability: Can the system handle increased load by adding more instances? Microservices are inherently scalable, so this is a positive factor.
+	• Fault Tolerance: What happens if one service goes down? The system should handle failures gracefully (e.g., through retries, circuit breakers).
+	• Maintainability: Microservices allow for easier updates since individual services can be updated without redeploying the entire system.
+	• Monitoring & Logging: Set up logging (e.g., ELK stack) and monitoring (e.g., Prometheus, Grafana) to track the health of services, CPU usage, and failures.
+	• Security: Ensure proper authentication/authorization (e.g., OAuth2, JWT) between services and secure communication channels (TLS/SSL).
+	• Latency: Optimize for low latency by caching frequently accessed data and minimizing inter-service calls.
+Example Scenario: E-Commerce System
+If you’re tasked with designing an e-commerce system with a microservices approach:
+	• Microservices: Break it down into user management, product catalog, shopping cart, order processing, and payment services.
+	• Database Schema: Each service has its own schema. For example, the product catalog service stores product details, while the order processing service tracks order statuses.
+	• Scalability: Use a load balancer to distribute incoming user traffic across multiple instances of each service.
+	• Caching: Cache frequently accessed product data in Redis and use a CDN for static content (images, styles).
+	• Load Balancing: Distribute API requests across multiple instances of the product catalog and other services using a Layer 7 load balancer.
+	• Monitoring: Use tools like Prometheus and Grafana to monitor the system, track issues, and scale services automatically.
+This approach ensures that the system is scalable, fault-tolerant, and efficient in handling different types of load.
