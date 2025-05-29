@@ -1,0 +1,111 @@
+1. Introduction to Spring Boot:
+    - Spring Boot is a framework for building web applications and microservices with minimal configuration.
+    - It simplifies the development process by providing a set of pre-configured dependencies and auto-configuration.
+2. Auto-Configuration:
+    - Spring Boot's auto-configuration feature automatically configures your application based on the dependencies you've added.
+    - It eliminates the need for manual configuration, making development faster and easier.
+3. Starter Dependencies:
+    - Starter dependencies are pre-configured dependencies that simplify the process of adding dependencies to your project.
+    - They include everything you need to get started with a particular feature or technology.
+4. Spring Boot Actuator:
+    - Spring Boot Actuator provides production-ready features for monitoring and managing your application.
+    - It includes features like health checks, metrics, and auditing.
+
+which annotation will it search while running spring boot application ??
+
+Spring Boot's @Test annotations search for your primary configuration automatically whenever you do not explicitly define one. The search algorithm works up from the package that contains the test until it finds a class annotated with @SpringBootApplication or @SpringBootConfiguration .
+
+Let's dive deeper into each topic:
+
+1. Introduction to Spring Boot
+
+Spring Boot is a popular Java framework for building web applications, microservices, and RESTful APIs. Key features:
+
+- Simplified configuration
+- Embedded servers (Tomcat, Jetty)
+- Auto-configuration
+- Starter dependencies
+- Production-ready
+
+2. Auto-Configuration
+
+Spring Boot's auto-configuration:
+
+- Scans classpath for dependencies
+- Configures beans and settings automatically
+- Eliminates manual configuration
+
+Examples:
+
+- Database configuration (e.g., Hibernate)
+- Web server configuration (e.g., Tomcat)
+
+3. Starter Dependencies
+
+Spring Boot starter dependencies:
+
+- Pre-configured dependencies for common tasks
+- Simplify dependency management
+- Examples:
+    - spring-boot-starter-web for web development
+    - spring-boot-starter-data-jpa for database persistence
+
+Code Examples:
+
+1. Spring Boot Auto-Configuration
+
+
+// Application.java
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+
+// UserController.java
+@RestController
+@RequestMapping("/users")
+public class UserController {
+    @Autowired
+    private UserService userService;
+    
+    @GetMapping
+    public List<User> getUsers() {
+        return userService.getUsers();
+    }
+}
+
+
+2. Spring Boot Starter Dependencies (pom.xml)
+
+
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+</dependencies>
+
+
+3. Spring Boot Actuator
+
+
+// Application.java
+@SpringBootApplication
+@EnableAutoConfiguration
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+
+// Actuator endpoints
+http://localhost:8080/actuator/health
+http://localhost:8080/actuator/metrics
+
+
