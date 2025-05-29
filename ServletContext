@@ -1,0 +1,8 @@
+Feature	ServletContext	Spring ApplicationContext
+Scope	Web application scope	Spring container scope
+Purpose	Servlet container configuration	Spring bean & application management
+Creation	Created by web container	Created by Spring framework
+Lifecycle	One per web application	Multiple contexts possible
+
+From <https://highlight-chat-frontend.vercel.app/> 
+
