@@ -1,0 +1,54 @@
+Spring MVC (Model-View-Controller) is a popular web application framework within the Spring ecosystem. It provides a powerful and flexible architecture for building web applications. Here's an introduction to Spring MVC:
+ 
+1. Core Concepts:
+	• Model: Represents the application data and business logic
+	• View: Renders the model data and defines how it should be presented to the user
+	• Controller: Handles user requests, processes them, and prepares the model for the view
+2. Key Components:
+	• DispatcherServlet: The front controller that handles all incoming requests
+	• HandlerMapping: Maps requests to appropriate controllers
+	• Controller: Processes requests and returns a model and view
+	• ViewResolver: Resolves view names to actual View implementations
+3. Annotations:
+	• @Controller: Marks a class as a Spring MVC controller
+	• @RequestMapping: Maps HTTP requests to controller methods
+	• @GetMapping, @PostMapping, etc.: Shortcut annotations for specific HTTP methods
+	• @RequestParam: Binds request parameters to method parameters
+	• @PathVariable: Extracts values from the URI path
+4. Request Processing Flow:
+	• Client sends a request to the DispatcherServlet
+	• DispatcherServlet consults HandlerMapping to identify the appropriate controller
+	• Controller processes the request and returns a ModelAndView object
+	• ViewResolver resolves the logical view name to an actual View
+	• View renders the response using the model data
+5. Configuration:
+	• XML-based configuration (traditional approach)
+	• Java-based configuration (modern approach using @Configuration classes)
+	• Auto-configuration with Spring Boot (simplifies setup)
+6. Data Binding and Validation:
+	• Automatic binding of form data to Java objects
+	• Support for data validation using JSR-303 annotations
+7. Integration:
+	• Seamless integration with other Spring modules (e.g., Spring Security, Spring Data)
+	• Support for various view technologies (JSP, Thymeleaf, FreeMarker, etc.)
+ 
+Example Controller:
+ 
+@Controller
+@RequestMapping("/users")
+public class UserController {
+    @GetMapping("/{id}")
+    public String getUser(@PathVariable Long id, Model model) {
+        User user = userService.findById(id);
+        model.addAttribute("user", user);
+        return "userDetails";
+    }
+    @PostMapping
+    public String createUser(@ModelAttribute User user) {
+        userService.save(user);
+        return "redirect:/users";
+    }
+}
+ 
+Spring MVC offers a robust framework for building web applications, providing clear separation of concerns, flexibility, and extensive features for handling web requests and responses. It's widely used in enterprise applications and integrates well with the broader Spring ecosystem.
+
